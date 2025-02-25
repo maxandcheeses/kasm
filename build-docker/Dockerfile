@@ -14,6 +14,11 @@ RUN apt-get update && apt-get install -y \
     iputils-ping \
     netcat-traditional
 
+# Add yq for to extract keys during install script
+# Download and install yq
+RUN curl -sSL https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -o /usr/local/bin/yq && \
+    chmod +x /usr/local/bin/yq
+
 # Add Docker’s official GPG key
 RUN curl -fsSL https://download.docker.com/linux/debian/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 
