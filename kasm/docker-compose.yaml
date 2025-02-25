@@ -1,0 +1,57 @@
+services:
+  kasm-db:
+    container_name: kasm-db
+    image: dind-ubuntu:latest
+    restart: unless-stopped
+    privileged: true
+    stdin_open: true
+    tty: true
+    networks:
+      kasm-network:
+        ipv4_address: 172.19.0.2
+    extra_hosts:
+      kasm-agent-01: 172.2.14.100
+    volumes:
+      - ./db-opt:/opt/kasm
+      - ./db-postgresql:/var/lib/postgresql
+      - ./db-docker-data:/var/lib/docker
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD", "nc", "-z", "localhost", "5432"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  kasm-manager:
+    container_name: kasm-manager
+    image: dind-ubuntu:latest
+    restart: unless-stopped
+    privileged: true
+    stdin_open: true
+    tty: true
+    networks:
+      kasm-network:
+        ipv4_address: 172.19.0.3
+    extra_hosts:
+      kasm-agent-01: 172.2.14.100
+    volumes:
+      - ./manager-opt:/opt/kasm
+      - ./manager-docker-data:/var/lib/docker
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8443:8443"
+      - "8080:8080"
+      - "8081:8081"
+      - "8082:8082"
+    depends_on:
+      kasm-db:
+        condition: service_healthy
+
+networks:
+  kasm-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: "172.19.0.0/16"
