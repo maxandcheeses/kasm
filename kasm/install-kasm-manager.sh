@@ -51,9 +51,9 @@ while true; do
     fi
 done
 
-MANAGER_TOKEN=$(docker exec kasm-db yq eval '.manager.token' /opt/kasm/current/conf/app/agent.app.config.yaml)
-DATABASE_PW=$(docker exec kasm-db yq eval '.database.password' /opt/kasm/current/conf/app/api.app.config.yaml)
-REDIS_PW=$(docker exec kasm-db yq eval '.redis.redis_password' /opt/kasm/current/conf/app/api.app.config.yaml)
+MANAGER_TOKEN=$(docker exec kasm-db yq eval '.manager.token' /opt/kasm/current/conf/app/agent/agent.app.config.yaml)
+DATABASE_PW=$(docker exec kasm-db yq eval '.database.password' /opt/kasm/current/conf/app/api/api.app.config.yaml)
+REDIS_PW=$(docker exec kasm-db yq eval '.redis.redis_password' /opt/kasm/current/conf/app/api/api.app.config.yaml)
 docker exec -it kasm-manager bash -c "cd /tmp && curl -O https://kasm-static-content.s3.amazonaws.com/$KASM_TAR && tar -xf $KASM_TAR && bash kasm_release/install.sh --role app --db-hostname kasm-db.kasm_kasm-network --db-password $DATABASE_PW --redis-password $REDIS_PW -N -e"
 
 
