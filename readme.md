@@ -33,7 +33,6 @@ I only use browsers with Kasm so RDP/VNC isn't accounted for in this setup.
     ```
 5. Install Kasm in containers
     ```bash
-    (cd kasm
-    bash ./install-kasm-manager.sh)
+    (cd kasm && bash ./install-kasm-manager.sh)
     ```
 6. Install Kasm agent on VMs using commands outputted from step 5.
