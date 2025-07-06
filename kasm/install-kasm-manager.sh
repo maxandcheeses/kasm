@@ -3,7 +3,7 @@ set -o pipefail
 
 cd "$(dirname "$0")"
 
-KASM_TAR=kasm_release_1.16.1.98d6fa.tar.gz
+KASM_TAR=kasm_release_1.17.0.7f020d.tar.gz
 
 HOST_IP=$(hostname -I | awk '{print $1}')
 
