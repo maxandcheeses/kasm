@@ -5,7 +5,7 @@ cd "$(dirname "$0")"
 
 KASM_TAR=kasm_release_1.17.0.7f020d.tar.gz
 
-HOST_IP=$(hostname -I | awk '{print $1}')
+HOST_IP=$(hostname -I 2>/dev/null | awk '{print $1}'); [ -z "$HOST_IP" ] && HOST_IP=$(/sbin/ifconfig eth0 2>/dev/null | grep 'inet addr' | awk -F: '{print $2}' | awk '{print $1}'); echo "$HOST_IP"
 
 # Check if the retrieval was successful
 if [ -z "$HOST_IP" ]; then
