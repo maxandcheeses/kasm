@@ -36,3 +36,4 @@ I only use browsers with Kasm so RDP/VNC isn't accounted for in this setup.
     (cd kasm && bash ./install-kasm-manager.sh)
     ```
 6. Install Kasm agent on VMs using commands outputted from step 5.
+7. Setup reverse proxy. https://www.kasmweb.com/docs/latest/how_to/reverse_proxy.html#update-zones
