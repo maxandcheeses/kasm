@@ -25,13 +25,11 @@ I only use browsers with Kasm so RDP/VNC isn't accounted for in this setup.
    ```
 3. Build base image
     ```bash
-    (cd build-docker
-    bash ./build.sh)
+    (cd build-docker && bash ./build.sh)
     ```
 4. Bring up the containers
     ```bash
-    (cd kasm
-    docker compose up -d)
+    (cd kasm && docker compose up -d)
     ```
 5. Install Kasm in containers
     ```bash
