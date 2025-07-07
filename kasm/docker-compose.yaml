@@ -1,7 +1,7 @@
 services:
   kasm-db:
     container_name: kasm-db
-    image: dind-ubuntu:latest
+    build: .
     restart: unless-stopped
     privileged: true
     stdin_open: true
@@ -17,7 +17,7 @@ services:
 
   kasm-manager:
     container_name: kasm-manager
-    image: dind-ubuntu:latest
+    build: .
     restart: unless-stopped
     privileged: true
     stdin_open: true
